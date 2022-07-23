@@ -9,7 +9,7 @@ export class AppService {
   employeeList: employeeDetails[] = [];
   metadata: tableMetadata = {
     fields: [
-      {name: 'EMP_NAME', label: 'Employee Name', type: 'text', error: 'Please input name!', width: '250px'},
+      {name: 'EMP_NAME', label: 'Name', type: 'text', error: 'Please input name!', width: '250px'},
       {name: 'EMP_DESIGNATION', label: 'Designation', type: 'text', error: 'Please input designation!', width: '150px'}, 
       {name: 'EMP_SALARY', label: 'Salary', type: 'number', error: 'Please input salary!', width: '150px'},
       {name: 'EMP_BIO', label: 'Short Bio', type: 'textarea', error: 'Please input bio!', width: '250px'}, 

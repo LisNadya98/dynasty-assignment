@@ -1,8 +1,8 @@
 <div *ngIf="!disableForm; else showMessage">
     <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" >
         <nz-form-item nz-row *ngFor="let field of metadata.fields">
-            <nz-form-label nz-col nzSpan="4" [nzFor]="field.name" nzRequired>{{field.label}}</nz-form-label>
-            <nz-form-control nz-col nzSpan="20" [nzErrorTip]="field.error">
+            <nz-form-label nz-col nzSpan="6" nzLg="5" nzXl="3" [nzFor]="field.name" nzRequired>{{field.label}}</nz-form-label>
+            <nz-form-control nz-col nzSpan="18" nzLg="19" nzXl="21" [nzErrorTip]="field.error">
                 <container-element [ngSwitch]="field.type">
                     <textarea
                         *ngSwitchCase="'textarea'"
@@ -25,7 +25,7 @@
             </nz-form-control>
         </nz-form-item >
         <div nz-row nzJustify="end">
-            <button nz-col nzSpan="6" 
+            <button nz-col nzSpan="6" nzXl="4" 
                 style="margin-left: 10px;" 
                 *ngFor="let action of metadata.actions" 
                 nz-button 
