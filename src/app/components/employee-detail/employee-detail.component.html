@@ -1,0 +1,44 @@
+<div *ngIf="!disableForm; else showMessage">
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" >
+        <nz-form-item nz-row *ngFor="let field of metadata.fields">
+            <nz-form-label nz-col nzSpan="4" [nzFor]="field.name" nzRequired>{{field.label}}</nz-form-label>
+            <nz-form-control nz-col nzSpan="20" [nzErrorTip]="field.error">
+                <container-element [ngSwitch]="field.type">
+                    <textarea
+                        *ngSwitchCase="'textarea'"
+                        nz-input
+                        placeholder="Enter"
+                        rows="2" 
+                        [formControlName]="field.name"
+                    >
+                    </textarea>
+                    <nz-date-picker 
+                        *ngSwitchCase="'date'" 
+                        style="width:100%"
+                        nzMode="date"
+                        [formControlName]="field.name"
+                    >
+                    </nz-date-picker>
+                    <input *ngSwitchCase="'number'" positiveWholeNumber nz-input placeholder="Enter" [name]="field.name" type="field.type" id="field.name" [formControlName]="field.name">
+                    <input *ngSwitchDefault nz-input placeholder="Enter" [name]="field.name" type="field.type" id="field.name" [formControlName]="field.name">
+                </container-element>
+            </nz-form-control>
+        </nz-form-item >
+        <div nz-row nzJustify="end">
+            <button nz-col nzSpan="4" 
+                style="margin-left: 10px;" 
+                *ngFor="let action of metadata.actions" 
+                nz-button 
+                [nzType]="action.name === 'save' ? 'primary' : 'default'"
+                (click)="onAction({name: action.name, event: $event})"
+            >
+                {{action.label}}
+            </button>
+        </div>
+    </form>
+</div>
+
+<ng-template #showMessage>
+    <nz-alert nzType="info" nzMessage="Please choose an employee to edit from the View Employee List"></nz-alert>
+</ng-template> 
+

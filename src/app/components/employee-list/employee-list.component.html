@@ -1,0 +1,27 @@
+<nz-table #basicTable [nzData]="employeeList">
+    <thead>
+      <tr>
+        <th *ngFor="let field of metadata.fields">{{field.label}}</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td *ngFor="let field of metadata.fields" [title]="data[field.name]">
+          <container-element [ngSwitch]="field.name">
+            <span *ngSwitchCase="'EMP_BIO'">{{data[field.name] | truncateLongText}}</span>
+            <span *ngSwitchCase="'EMP_DOB'">{{this.formatDate(data.EMP_DOB)}}</span>
+            <span *ngSwitchDefault>{{data[field.name]}}</span>
+          </container-element>
+        </td>
+        <td>
+          <ng-container *ngFor="let action of metadata.actions; let i = index">
+            <a (click)="onAction({data: data, name: action.name})">
+              {{action.label}}
+            </a>
+            <nz-divider *ngIf="metadata.actions.length > 0 && i !== metadata.actions.length - 1" nzType="vertical"></nz-divider>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+</nz-table>
