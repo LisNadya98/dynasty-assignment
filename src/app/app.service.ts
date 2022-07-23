@@ -30,15 +30,12 @@ export class AppService {
     return this.employeeList;
   }
 
-  deleteEmployee(id: string | undefined) {
-    if (!id) {
-      return;
-    }
+  deleteEmployee(id: string | null) {
     this.employeeList =  this.employeeList.filter(a => a.ID !== id);
     this.setEmployeeList();
   }
 
-  addEmployee(payload: any) {
+  addEmployee(payload: employeeDetails) {
     const result = Object.assign({}, payload);
     result.ID = uuidv4();
     this.employeeList =  [...this.employeeList, result];
@@ -49,7 +46,7 @@ export class AppService {
     return this.employeeList.find(a => a.ID === id);
   }
 
-  updateEmployee(payload: any) {
+  updateEmployee(payload: employeeDetails) {
     const index = this.employeeList.findIndex(a => a.ID === payload.ID);
     this.employeeList.splice(index, 1, payload);
     this.setEmployeeList();

@@ -12,7 +12,7 @@ import { differenceInCalendarDays } from 'date-fns';
   styleUrls: ['./employee-detail.component.css']
 })
 export class EmployeeDetailComponent implements OnInit {
-  employeeId: string | null | undefined;
+  employeeId: string | null = null;
   disableForm: boolean = false;
   employeeDataCopy: employeeDetails | undefined;
   validateForm!: FormGroup;
@@ -77,7 +77,9 @@ export class EmployeeDetailComponent implements OnInit {
       this.promptMessage('success', 'Successfully created new employee!');
       this.validateForm.reset();
     } else {
-      this.appService.updateEmployee(data);
+      const payload = Object.assign({}, data);
+      payload.ID = this.employeeId;
+      this.appService.updateEmployee(payload);
       this.employeeDataCopy = Object.assign({}, data);
       this.promptMessage('success', 'Successfully updated employee ' + data.EMP_NAME);
     }

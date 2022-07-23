@@ -17,7 +17,7 @@ type actionMetadata = {
 }
 
 export type employeeDetails = {
-    ID?: string,
+    ID?: string | null,
     EMP_NAME: string,
     EMP_DESIGNATION: string,
     EMP_SALARY: number,
