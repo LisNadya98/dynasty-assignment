@@ -12,6 +12,7 @@ import { tableMetadata, employeeDetails } from '../metadata.modal';
 export class EmployeeListComponent implements OnInit {
   employeeList: employeeDetails[] = [];
   metadata: tableMetadata = {fields: [], actions: []};
+  scrollWidth = { x: '100%' };
 
   constructor(
     private message: NzMessageService,
@@ -20,8 +21,7 @@ export class EmployeeListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.metadata = Object.assign({}, this.appService.getMetadata());
-    this.metadata.actions = this.metadata.actions.filter(a => ['edit', 'delete'].includes(a.name));
+    this.metadataConfigure();
     this.getEmployeeList();
   }
 
@@ -57,5 +57,13 @@ export class EmployeeListComponent implements OnInit {
 
   formatDate(date_: string) {
     return new Date(date_).toLocaleDateString();
+  }
+
+  metadataConfigure() {
+    this.metadata = Object.assign({}, this.appService.getMetadata());
+    this.metadata.actions = this.metadata.actions.filter(a => ['edit', 'delete'].includes(a.name));
+    let total = 0;
+    this.metadata.fields.forEach(f => total += Number(f.width));
+    this.scrollWidth = {x: `${total}px`};
   }
 }

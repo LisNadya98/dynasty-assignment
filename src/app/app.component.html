@@ -1,4 +1,4 @@
-<nz-card style="width:80%; position:relative; margin:auto" [nzTitle]="title">
+<nz-card class="card" [nzTitle]="title">
   <nz-tabset nzLinkRouter nzLinkExact="false">
     <nz-tab *ngFor="let tab of tabList" >
       <a *nzTabLink nz-tab-link [routerLink]="[tab.link]" > {{tab.title}}</a>

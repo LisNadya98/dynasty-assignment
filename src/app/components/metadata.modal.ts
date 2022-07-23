@@ -8,6 +8,7 @@ type fieldMetadata = {
     label: string,
     type: string,
     error: string,
+    width: string
 }
 
 type actionMetadata = {
