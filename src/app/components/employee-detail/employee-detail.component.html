@@ -17,10 +17,28 @@
                         style="width:100%"
                         nzMode="date"
                         [formControlName]="field.name"
+                        [nzDisabledDate]="disabledDate"
                     >
                     </nz-date-picker>
-                    <input *ngSwitchCase="'number'" positiveWholeNumber nz-input placeholder="Enter" [name]="field.name" type="field.type" id="field.name" [formControlName]="field.name">
-                    <input *ngSwitchDefault nz-input placeholder="Enter" [name]="field.name" type="field.type" id="field.name" [formControlName]="field.name">
+                    <input 
+                        *ngSwitchCase="'number'" 
+                        positiveWholeNumber 
+                        nz-input 
+                        placeholder="Enter" 
+                        [name]="field.name" 
+                        type="field.type" 
+                        id="field.name" 
+                        [formControlName]="field.name"
+                    >
+                    <input 
+                        *ngSwitchDefault 
+                        nz-input 
+                        placeholder="Enter" 
+                        [name]="field.name" 
+                        type="field.type" 
+                        id="field.name" 
+                        [formControlName]="field.name"
+                    >
                 </container-element>
             </nz-form-control>
         </nz-form-item >

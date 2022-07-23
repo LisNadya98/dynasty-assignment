@@ -4,6 +4,8 @@ import { AppService } from '../../app.service';
 import { ActivatedRoute, Router } from "@angular/router"
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { tableMetadata, employeeDetails } from '../metadata.modal';
+import { differenceInCalendarDays } from 'date-fns';
+
 @Component({
   selector: 'employee-detail',
   templateUrl: './employee-detail.component.html',
@@ -76,6 +78,7 @@ export class EmployeeDetailComponent implements OnInit {
       this.validateForm.reset();
     } else {
       this.appService.updateEmployee(data);
+      this.employeeDataCopy = Object.assign({}, data);
       this.promptMessage('success', 'Successfully updated employee ' + data.EMP_NAME);
     }
   }
@@ -100,4 +103,7 @@ export class EmployeeDetailComponent implements OnInit {
   promptMessage(type: string, msg: string) {
     this.message.create(type, msg);
   }
+
+  disabledDate = (current: Date): boolean =>
+    differenceInCalendarDays(current, new Date()) > 0;
 }
