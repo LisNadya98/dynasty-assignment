@@ -1,7 +1,7 @@
 export type tableMetadata = {
     fields: fieldMetadata[],
     actions: actionMetadata[]
-};
+}
   
 type fieldMetadata = {
     name: string,
@@ -22,6 +22,6 @@ export type employeeDetails = {
     EMP_DESIGNATION: string,
     EMP_SALARY: number,
     EMP_BIO: string,
-    EMP_DOB: string
+    EMP_DOB: string,
     [key:string]: any
 }

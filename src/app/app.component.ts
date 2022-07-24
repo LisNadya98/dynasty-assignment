@@ -9,8 +9,6 @@ import { en_US, NzI18nService } from 'ng-zorro-antd/i18n';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  selectedTabIndex: number = 0;
-  nzLinkExact: boolean = false;
   tabList = [
     {id: 0, title: 'Add Employee', name: 'add', link: '/employee-detail/NEW'},
     {id: 1, title: 'Edit Employee', name: 'edit', link: '/employee-detail'},
